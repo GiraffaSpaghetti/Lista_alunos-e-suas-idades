@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+class Main {
+  private String[] alunos;
+  private int[] idades;
+  private int tamanho;
+
+  public Main(int tam){
+    if(tam > 0){
+      this.tamanho = tam;
+      this.alunos = new String[tamanho];
+      this.idades = new int[tamanho];
+    }
+  }
+
+  public void InserirAluno(String aluno,int pos){
+    alunos[pos] = aluno;
+  }
+  public void InserirIdade(int idade){
+    if(idade > 0){
+      for(int i=0;i<=(idades.length-1);i++){
+        if (idades[i] == 0){
+          idades[i] = idade;
+        }
+      }  
+    }else{
+      System.out.println("Essa não é uma idade válida");
+    }
+  }
+
+  public void Remover(){
+    Scanner leia = new Scanner(System.in);
+    System.out.println("\nDigite um aluno para remover: ");
+    String aluno = leia.next();
+    for(int i=0;i<=(alunos.length-1);i++){
+      if (alunos[i] == aluno){
+        alunos[i] = " ";
+        idades[i] = 0;
+      }
+    }
+  }
+
+  public void Busca(String aluno){
+    for(int i=0;i<=(alunos.length-1);i++){
+      if(alunos[i] == aluno){
+        System.out.println("O valor está no indice: " + i);
+      }
+    }
+  }
+
+  public void Mostra(){
+    for(int i=0;i<=(this.alunos.length-1);i++){
+      System.out.print(this.alunos[i]+" ");
+    }
+  }
+
+  public void MaiorDeIdade(String aluno){
+    for(int i=0;i<=(alunos.length-1);i++){
+      if(alunos[i] == aluno){
+        if (idades[i] >= 18){
+          System.out.println("\n"+aluno + " é maior de idade");
+        }else{
+          System.out.println("\n"+aluno + " é menor de idade");
+        }
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    Main a = new Main(3);
+    
+    a.InserirAluno("Jeremias",0);
+    a.InserirAluno("Ronaldo",1);
+    a.InserirAluno("Feromonas",2);
+    a.InserirIdade(16);
+    a.InserirIdade(9);
+    a.InserirIdade(29);
+ 
+    a.MaiorDeIdade("Ronaldo");
+  }
+}
